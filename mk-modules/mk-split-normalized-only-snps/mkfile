@@ -1,0 +1,19 @@
+MKSHELL=/bin/bash
+#Definir MKSHELL ahora debe ir siempre arriba con /bin/bash. "Todo lo que viene a continuación interprétalo con bash"
+
+#Este bloque separa los multialélicos, normaliza y deja solo snps
+%.split.normalized.only_snps.vcf:Q: %.split.normalized.vcf
+	bcftools view $prereq --exclude-uncalled  --types snps --output-file $target.build \
+	&& mv $target.build $target
+
+%.split.normalized.vcf:Q: %.split.vcf
+	bcftools norm \
+							--fasta-ref $GENOME_REFERENCE \
+							$prereq \
+							--output $target
+
+%.split.vcf:Q: %.vcf
+	bcftools norm \
+							--multiallelics -any \
+							$prereq \
+							--output $target
