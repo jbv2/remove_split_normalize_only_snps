@@ -3,5 +3,8 @@ MKSHELL=/bin/bash
 
 #Este bloque quita las muestras no deseadas.
 %.samples_removed.vcf:Q: %.vcf.gz
-	bcftools view --samples-file $SAMPLE --force-samples --output-file $target.build $prereq \
+	bcftools view \
+		--samples $(grep -v "#" samples_to_keep.tsv | cut -f1 | tr "\n" "," | sed "s#,\$##") \
+		--min-ac 1 \
+		--output-file $target.build $prereq \
 	&& mv $target.build $target

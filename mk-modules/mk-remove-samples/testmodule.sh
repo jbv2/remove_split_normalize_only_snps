@@ -1,7 +1,7 @@
 #!/bin/#!/usr/bin/env bash
 ## ENVIRONMENTE VARIABLES REQUIRED
 #format is: export VARNAME="value"
-export SAMPLE="test/data/sample_file.txt"
+#export SAMPLE="test/data/sample_file.txt" ## deprecated since no NFlow mount is required now
 
 # borrar resultados de prueba anterior
 rm -fr test/results/

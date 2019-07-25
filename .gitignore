@@ -1,19 +1,31 @@
-# ignorando logs de nextflow
-.nextflow.log*
-
-# ignorando los resultados de las pruebas locales de los módulos
-mkmodules/mk-*/test/results/
-mkmodules/mk-*/test/reference/*
-
-#archivos temporales
-*.tmp
-
-# ignorando swaps
+## ignore swap files
 *.swp
 
-#ignorando workkdir
-work
+## ignore Rplots.pdf trash files
+*Rplots.pdf
 
-#ignorando archivos basura nexflow
-.nextflow*
-.nextflow/history
+## ignore nf.logs
+.nextflow.log*
+.nextflow/
+
+## ignore workdirw
+work*
+
+## Ignore test subdirectories from mkmodules
+mkmodules/*/test/results/*
+
+## ignore intermediate and logs from tests
+test/data/*/intermediate/
+test/data/*/logs/
+test/results*
+
+## ignore local R datas
+*.Rdata
+*.Rhistory
+
+## ignore real data dirs
+real-data
+
+## ignore modules markedas REDO - means, in need of refactoring or remaking
+*REDO
+
