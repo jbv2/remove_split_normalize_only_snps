@@ -1,0 +1,9 @@
+MKSHELL=/bin/bash
+#Definir MKSHELL ahora debe ir siempre arriba con /bin/bash. "Todo lo que viene a continuación interprétalo con bash"
+
+#Este bloque de códido quita las variantes para las que AC=<2, de tal forma que los singletones se eliminen.
+%.singletones_removed.vcf.gz:Q: %.vcf.gz
+		bcftools view --min-ac 2 \
+		$prereq \
+		| bgzip > $target \
+    && tabix -p vcf $target
